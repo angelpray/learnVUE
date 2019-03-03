@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="name">{{name}}</div>
+  <script>
+    var app = new Vue({
+      el: '#name',
+      data: {
+        name: '张家荣'
+      }
+    })
+    setTimeout(() => {
+      app.$data.name = "ZJR"
+    }, 2000);
+  </script>
+</body>
+</html>
