@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <input type="text" v-model=inputValue>
+    <button @click="submit()">提交</button>
+    <!-- 相对于#root来说，todo-item是子组件 -->
+    <todo-item :content="item" v-for="item in list"></todo-item>
+  </div>
+  <script>
+    // 全局组件
+    // Vue.component("TodoItem", {
+    //   // 要使用父组件的item值需要使用props接收
+    //   props: ["content"],
+    //   template: "<li>{{content}}</li>"
+    // })
+    // 局部组件
+    var TodoItem = {
+      props: ["content"],
+      template: "<li>{{content}}</li>"
+    }
+    var app = new Vue({
+      el: "#root",
+      // 使用局部组件需要注册
+      components: {
+        TodoItem: TodoItem
+      },
+      data: {
+        list: [],
+        inputValue: ''
+      },
+      methods: {
+        submit: function() {
+          this.list.push(this.inputValue);
+          this.inputValue = '';
+        }
+      }
+    })
+  </script>
+</body>
+</html>
