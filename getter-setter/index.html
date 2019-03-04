@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    {{fullName}}
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#root",
+      data: {
+        firstName: "JR",
+        lastName: "Z"
+      },
+      computed: {
+        fullName: {
+          get: function() {
+            return this.firstName + this.lastName;
+          },
+          set: function(value) {
+            var arr = value.split(" ");
+            this.firstName = arr[1];
+            this.lastName = arr[0];
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
