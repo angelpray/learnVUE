@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 都可以写JS表达式 -->
+    <div>{{name + ' lee'}}</div>
+    <div v-text="name + ' lee'"></div>
+    <div v-html="name + ' lee'"></div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        name: "Dell"
+      }
+    })
+  </script>
+</body>
+</html>
