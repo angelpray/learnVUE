@@ -13,12 +13,19 @@
     <div v-else-if="show === 'b'">b</div>
     <div v-else>bye world</div>
     <div v-show="show">{{message}}</div>
+    <div v-if="key">
+      用户名<input type="text" key="username">
+    </div>
+    <div v-else>
+      密码<input type="password" key="password">
+    </div>
   </div>
   <script>
     var vm = new Vue({
       el: "#app",
       data: {
         show: "a",
+        key: true,
         message: "hello world"
       }
     })
