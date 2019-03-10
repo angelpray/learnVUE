@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-for="(item) of userInfo" 
+         :key="item.id">
+      {{item}}
+    </div>
+  </div>
+  <script>
+    // push pop shift unshift splice sort reverse
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        userInfo: {
+          name: "dell",
+          age: 28,
+          id: "asdf"
+        }
+      }
+    })
+  </script>
+</body>
+</html>
