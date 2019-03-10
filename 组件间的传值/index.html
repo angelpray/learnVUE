@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <child content="Dell"></child>
+    <child content="Lee"></child>
+  </div>
+  <script>
+    // 发布订阅模式/观察者模式/Bus/总线
+    Vue.prototype.bus = new Vue();
+    Vue.component('child', {
+      props: {
+        content: String
+      },
+      data: function() {
+        return {
+          selfContent: this.content
+        }
+      },
+      template: "<div @click='handleClick'>{{selfContent}}</div>",
+      methods: {
+        handleClick: function() {
+          this.bus.$emit("change", this.selfContent);
+        }
+      },
+      mounted: function() {
+        var this_ = this;
+        // 两个组件有两个bus，通过bus进行通信
+        this.bus.$on("change", function(msg) {
+          
+          this_.selfContent = msg;
+        })
+      }
+    })
+    var vm = new Vue({
+      el: "#app"
+    })
+  </script>
+</body>
+</html>
