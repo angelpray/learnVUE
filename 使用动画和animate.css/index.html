@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <link rel="stylesheet" href="../lib/animation.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <transition 
+      enter-active-class="animated swing"
+      leave-active-class="animated shake"
+      >
+      <div v-show="show">
+        hello world
+      </div>
+    </transition>
+    <button @click="handleButtonClick">{{content}}</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#root",
+      data: {
+        show: false,
+        content: "显示"
+      },
+      methods: {
+        handleButtonClick: function() {
+          this.show = !this.show;
+          this.content = this.content === "显示"
+            ? "隐藏"
+            : "显示"
+        }
+      }
+    })
+  </script>
+</body>
+</html>
