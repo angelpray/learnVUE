@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/velocity.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+      <transition 
+        @before-enter="handleBeforeEnter"
+        @enter="handleEnter"
+        @after-enter="handleAfterEnter">
+        <div v-show="show">
+          hello world
+        </div>
+      </transition>
+    <button @click="handleButtonClick">toggle</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#root",
+      data: {
+        show: true
+      },
+      methods: {
+        handleBeforeEnter: function(el) {
+          el.style.opacity = 0;
+        },
+        handleEnter: function(el, done) {
+          console.log("动画开始执行");
+          Velocity(el, {
+            opacity: 1
+          },{
+            duration: 2000,
+            complete: done
+          })
+        },
+        handleAfterEnter: function(el) {
+          el.style.color = "red";
+        },
+        handleButtonClick: function() {
+          this.show = !this.show;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
