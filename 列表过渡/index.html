@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../lib/vue.js"></script>
+  <title>Document</title>
+  <style>
+    .v-enter,.v-leave-to {
+      opacity: 0;
+    }
+    .v-enter-active, .v-leave-active {
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <transition-group>
+      <div v-for="item in list" :key="item.id">{{item.title}}</div>
+    </transition-group>
+    <button @click="handleButtonClick">Add</button>
+  </div>
+  <script>
+    var counter = 0;
+    var vm = new Vue({
+      el: "#root",
+      data: {
+        list: []
+      },
+      methods: {
+        handleButtonClick: function() {
+          this.list.push({
+            id: counter++,
+            title: "Hello Vue"
+          })
+        }
+      }
+    })
+
+  </script>
+</body>
+</html>
